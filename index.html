@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>yavendió! Apresentação</title>
+
+<link rel="stylesheet" href="web/vendor/reveal.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --plum500:#31162F; --plum400:#6A2F65; --plum300:#8D3F87; --plum200:#AB84C8; --plum100:#E5DCEF;
+  --ind500:#2A396B; --ind400:#3A4E92; --ind300:#6D81C5; --ind200:#B6C0E2; --ind100:#EDF1F8;
+  --yel300:#F4EC7A;
+  --ink900:#1C1C1C; --st900:#1C1917; --st700:#44403C; --st100:#F5F5F4; --st50:#FAFAF9; --neutral:#E7E5E4;
+  --text-dim:#666; --text-muted:#C4C4C4;
+  --w4:rgba(255,255,255,.04); --w10:rgba(255,255,255,.1); --w40:rgba(255,255,255,.4);
+  --plum-dawn:radial-gradient(70% 55% at 50% -10%,#532350 0%,#3E1A3B 23%,#2C132A 43%,#160915 88%);
+  --shadow-sm:0 1px 2px 0 rgba(0,0,0,.05);
+  --shadow-md:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+  --font-heading:'Bricolage Grotesque',system-ui,sans-serif;
+  --font-body:'Raleway',system-ui,sans-serif;
+}
+
+.reveal{font-family:var(--font-body); font-size:28px; color:var(--ink900); word-spacing:.02em}
+.reveal h1,.reveal h2,.reveal h3,.reveal h4{font-family:var(--font-heading); font-weight:600; text-transform:none; text-wrap:balance; letter-spacing:-.03em; margin:0; color:inherit}
+.reveal p{line-height:1.5; margin:0}
+.reveal strong{color:inherit; font-weight:600}
+.reveal ul{margin:0; padding:0; list-style:none; display:block}
+.reveal .slides section{width:100%; height:100%; top:0!important; padding:0; text-align:left; box-sizing:border-box; display:flex; flex-direction:column}
+
+.sl{position:relative; height:100%; display:flex; flex-direction:column; padding:84px 96px 70px; box-sizing:border-box}
+.sl--center{align-items:center; justify-content:center; text-align:center}
+.bg-light .sl,.bg-light{background:var(--st100); color:var(--ink900)}
+.bg-soft .sl,.bg-soft{background:var(--st50); color:var(--ink900)}
+.bg-plum .sl,.bg-plum{background:var(--plum500); color:#fff}
+.bg-dawn{background-color:#160915; background-image:var(--plum-dawn); color:#fff}
+.bg-ink .sl,.bg-ink{background:var(--ink900); color:#fff}
+
+.ya-logo{position:absolute; top:32px; left:44px; height:22px; width:auto; z-index:5}
+
+.reveal .kicker{font-family:var(--font-body); font-size:14px; font-weight:600; letter-spacing:.375em; text-transform:uppercase; margin-bottom:18px; color:var(--ind400)}
+.on-dark .kicker,.bg-dawn .kicker,.bg-plum .kicker,.bg-ink .kicker{color:var(--plum200)}
+.reveal .display{font-size:64px; line-height:1.08; letter-spacing:-.05em}
+.reveal .h2{font-size:44px; line-height:1.1; letter-spacing:-.042em}
+.reveal .h3{font-size:36px; line-height:1.12; letter-spacing:-.04em}
+.reveal .lead{font-size:20px; line-height:1.5; max-width:720px}
+.reveal .muted{color:var(--text-dim)}
+.reveal .muted-d{color:var(--text-muted)}
+.reveal .on80{color:rgba(255,255,255,.82)}
+.reveal .accent{color:var(--yel300)}
+.reveal .small{font-size:14px; line-height:1.45}
+.center-col{display:flex; flex-direction:column; align-items:center; text-align:center; max-width:980px; margin:0 auto}
+
+.btn{display:inline-flex; align-items:center; gap:10px; font-family:var(--font-body); font-weight:600; font-size:17px; border-radius:12px; padding:14px 28px; text-decoration:none}
+.btn--cta{background:var(--yel300); color:var(--plum500)}
+.btn--ghost{background:transparent; color:#fff; border:1px solid var(--w40)}
+.btn-row{display:flex; gap:14px; margin-top:32px}
+
+.grid{display:grid; gap:18px; width:100%}
+.grid-2{grid-template-columns:repeat(2,1fr)} .grid-3{grid-template-columns:repeat(3,1fr)} .grid-4{grid-template-columns:repeat(4,1fr)}
+.card{border-radius:16px; padding:24px; box-sizing:border-box}
+.card--light{background:#fff; border:1px solid rgba(0,0,0,.06); box-shadow:var(--shadow-sm)}
+.card--dark{background:var(--w4); border:1px solid var(--w10)}
+.card--promo{background:var(--ind100); border:1px solid var(--ind200)}
+.card h4{font-size:20px; letter-spacing:-.015em; margin:0 0 6px; line-height:1.2}
+.card p{font-size:15.5px; line-height:1.45}
+.num{font-family:var(--font-heading); font-weight:700; font-size:15px; color:var(--plum300); letter-spacing:.02em; display:block; margin-bottom:10px}
+
+.split{display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center; height:100%}
+.split .visual{display:flex; align-items:center; justify-content:center; height:100%}
+.split .visual img{max-width:100%; max-height:540px; object-fit:contain}
+
+/* lista com marcador plum */
+.dots li{position:relative; padding-left:22px; font-size:17px; line-height:1.45; margin-bottom:10px}
+.dots li::before{content:""; position:absolute; left:0; top:.55em; width:8px; height:8px; border-radius:2px; background:var(--plum300)}
+
+/* passos da jornada */
+.steps{display:flex; flex-direction:column; gap:10px; margin-top:22px}
+.step{display:grid; grid-template-columns:40px 1fr; gap:14px; align-items:start; background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:14px; padding:14px 18px}
+.step b{font-family:var(--font-heading); font-weight:700; font-size:22px; color:var(--plum300); line-height:1.1}
+.step h4{font-family:var(--font-heading); font-size:18px; letter-spacing:-.01em; margin:0 0 2px}
+.step p{font-size:14.5px; color:var(--text-dim); line-height:1.4}
+
+/* números de impacto */
+.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; width:100%; max-width:1040px}
+.stat{border-top:1px solid var(--w10); padding-top:24px; text-align:left}
+.stat .big{font-family:var(--font-heading); font-weight:800; font-size:92px; line-height:1; letter-spacing:-.05em; color:#fff}
+.stat .big.accent{color:var(--yel300)}
+.stat p{font-size:18px; color:var(--text-muted); margin-top:12px}
+
+/* tags de canal / integração */
+.tags{display:flex; flex-wrap:wrap; gap:8px}
+.tag{font-size:14.5px; font-weight:600; padding:7px 13px; border-radius:999px; background:#fff; border:1px solid var(--neutral); color:var(--st700)}
+.tag--soon{background:transparent; border-style:dashed; color:var(--text-dim)}
+.group-title{font-family:var(--font-heading); font-weight:600; font-size:17px; letter-spacing:-.01em; margin:0 0 10px; color:var(--ink900)}
+
+/* logos */
+.marquee{overflow:hidden; width:100%; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee__track{display:flex; gap:64px; width:max-content; align-items:center; animation:ya-marquee 30s linear infinite}
+.marquee img{height:34px; width:auto; object-fit:contain; opacity:.8; filter:grayscale(1)}
+@keyframes ya-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* planos */
+.plans{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; width:100%; align-items:stretch}
+.plan{background:#fff; border:1px solid rgba(0,0,0,.07); border-radius:18px; padding:24px 24px 20px; display:flex; flex-direction:column; box-shadow:var(--shadow-sm); position:relative}
+.plan--hi{border:2px solid var(--yel300); box-shadow:var(--shadow-md)}
+.plan .pill{position:absolute; top:-13px; left:24px; background:var(--yel300); color:var(--plum500); font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:4px 12px; border-radius:6px}
+.plan h3{font-family:var(--font-heading); font-size:26px; letter-spacing:-.03em; margin:0}
+.plan .for{font-size:14px; color:var(--text-dim); margin-top:4px; min-height:40px}
+.plan .price{font-family:var(--font-heading); font-weight:800; font-size:44px; letter-spacing:-.045em; line-height:1; margin-top:14px; color:var(--plum500)}
+.plan .price small{font-size:16px; font-weight:500; letter-spacing:0; color:var(--text-dim)}
+.plan .term{font-size:13px; color:var(--text-dim); margin-top:6px}
+.plan .conv{margin-top:14px; padding:8px 12px; border-radius:10px; background:var(--ind100); color:var(--ind500); font-weight:600; font-size:14.5px}
+.plan ul{margin-top:14px}
+.plan li{position:relative; padding-left:20px; font-size:14px; line-height:1.4; margin-bottom:7px; color:var(--st700)}
+.plan li::before{content:""; position:absolute; left:0; top:.5em; width:7px; height:7px; border-radius:2px; background:var(--plum300)}
+.plan .inc{font-size:12.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--plum300); margin-top:14px}
+
+/* tabela comparativa */
+.cmp{width:100%; border-collapse:collapse; font-size:15.5px}
+.cmp th,.cmp td{padding:9px 14px; border-bottom:1px solid var(--neutral); text-align:center}
+.cmp th:first-child,.cmp td:first-child{text-align:left; color:var(--st700)}
+.cmp thead th{font-family:var(--font-heading); font-size:19px; font-weight:600; letter-spacing:-.02em; color:var(--ink900); border-bottom:2px solid var(--ink900)}
+.cmp td{color:var(--ink900); font-weight:600}
+.cmp .yes{color:var(--plum300); font-weight:700}
+.cmp .no{color:#B5B0AB; font-weight:400}
+.cmp tr.sec td{font-family:var(--font-body); font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--ind400); text-align:left; border-bottom:none; padding-top:14px}
+
+/* Yago bubble */
+.yago-row{display:flex; align-items:flex-end; gap:14px; margin-top:22px}
+.yago-row img.avatar{width:84px; height:auto}
+.yago-bubble{background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:18px; border-bottom-left-radius:6px; padding:14px 18px; box-shadow:var(--shadow-md); max-width:440px; font-size:16px}
+
+.footer-bar{position:absolute; bottom:0; left:0; right:0; height:36px; background:var(--yel300); color:var(--plum500); font-family:var(--font-heading); font-weight:700; font-size:13px; letter-spacing:.04em; display:flex; align-items:center; justify-content:space-between; padding:0 44px; z-index:4}
+.source{position:absolute; bottom:46px; right:96px; font-size:12px; color:var(--text-dim)}
+.bg-ink .source,.bg-plum .source,.bg-dawn .source{color:var(--w40)}
+
+.video-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0}
+.video-scrim{position:absolute; inset:0; background:linear-gradient(0deg,rgba(22,9,21,.88),rgba(22,9,21,.4)); z-index:1}
+.video-slide .center-col{position:relative; z-index:2}
+
+@keyframes ya-rise-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.reveal .present .sl .center-col,
+.reveal .present .sl>.kicker,
+.reveal .present .sl>.h2,
+.reveal .present .sl>.h3,
+.reveal .present .sl>.lead,
+.reveal .present .sl .split>div,
+.reveal .present .sl .grid>*,
+.reveal .present .sl .plans>*,
+.reveal .present .sl .stats>*{animation:ya-rise-in .7s cubic-bezier(.16,1,.3,1) both}
+.reveal .present .sl .grid>*:nth-child(2),.reveal .present .sl .plans>*:nth-child(2),.reveal .present .sl .stats>*:nth-child(2){animation-delay:.08s}
+.reveal .present .sl .grid>*:nth-child(3),.reveal .present .sl .plans>*:nth-child(3),.reveal .present .sl .stats>*:nth-child(3){animation-delay:.16s}
+.reveal .present .sl .grid>*:nth-child(n+4){animation-delay:.24s}
+@media (prefers-reduced-motion:reduce){
+  .marquee__track{animation:none}
+  .reveal .present .sl *{animation:none!important}
+  .video-bg{display:none}
+}
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- 01 · CAPA -->
+  <section class="bg-dawn video-slide" data-background-color="#160915">
+    <div class="sl sl--center">
+      <video class="video-bg" autoplay muted loop playsinline poster="web/hero/bg-v9-mago.webp">
+        <source src="web/video/hero.webm" type="video/webm">
+        <source src="web/video/hero.mp4" type="video/mp4">
+      </video>
+      <div class="video-scrim"></div>
+      <img class="ya-logo" src="web/wordmark-white.png" alt="yavendió!">
+      <div class="center-col">
+        <p class="kicker">Apresentação · novembro 2026</p>
+        <h1 class="display">Seu time de IA que vende<br>no WhatsApp, <span class="accent">também às 2 da manhã</span></h1>
+        <p class="lead on80" style="margin-top:22px">Responde em segundos, mostra o produto certo, cobra no chat e registra o pedido. Funcionalidades e os planos novos.</p>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>01</span></div>
+    </div>
+    <aside class="notes">Abrir com a promessa do produto. Hoje: o que a yavendió! faz e os planos novos publicados em 16-nov-2026.</aside>
+  </section>
+
+  <!-- 02 · PROBLEMA -->
+  <section class="bg-light">
+    <div class="sl" style="justify-content:center">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <p class="kicker">O problema</p>
+      <h2 class="h2" style="max-width:980px">Você demora 30 minutos para responder e o cliente já comprou em outro lugar.</h2>
+      <div class="grid grid-3" style="margin-top:40px">
+        <div class="card card--light"><h4>Caos no atendimento</h4><p class="muted">Cliente esperando resposta e pedido anotado no papel. Você trabalha o dia todo e continua atrasado.</p></div>
+        <div class="card card--light"><h4>Zero visibilidade</h4><p class="muted">Não dá para saber quanto vendeu nem quem largou o carrinho. A decisão sai no chute.</p></div>
+        <div class="card card--light"><h4>Clientes que somem</h4><p class="muted">Quem pergunta preço e não recebe resposta rápida não volta.</p></div>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>02</span></div>
+    </div>
+  </section>
+
+  <!-- 03 · O QUE É -->
+  <section class="bg-soft">
+    <div class="sl">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <p class="kicker">O que é a yavendió!</p>
+      <h2 class="h3" style="max-width:900px">Quatro agentes de IA e um painel só para a sua loja</h2>
+      <p class="lead muted" style="margin-top:12px; margin-bottom:30px">Feito para fabricantes e lojas de moda, no atacado e no varejo. Também atende perfumaria, eletrônicos, pets e outras lojas com preço definido.</p>
+      <div class="grid grid-4">
+        <div class="card card--promo"><span class="num">01 · Vendas</span><h4>Atende e vende</h4><p class="muted">No WhatsApp, Instagram, TikTok e mais canais, 24 horas por dia.</p></div>
+        <div class="card card--light"><span class="num">02 · Operação</span><h4>Pedidos e estoque</h4><p class="muted">Registra o pedido, gera o comprovante e dá baixa no estoque.</p></div>
+        <div class="card card--light"><span class="num">03 · Marketing</span><h4>Campanhas</h4><p class="muted">Disparos em massa, upsell e venda cruzada pela API oficial.</p></div>
+        <div class="card card--light"><span class="num">04 · Financeiro</span><h4>Cobrança</h4><p class="muted">Link do Mercado Pago ou da Shopify e confirmação do pagamento no chat.</p></div>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>03</span></div>
+    </div>
+  </section>
+
+  <!-- 04 · JORNADA DE VENDA -->
+  <section class="bg-light">
+    <div class="sl">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <div class="split" style="grid-template-columns:1.2fr .8fr">
+        <div>
+          <p class="kicker">Como o agente vende</p>
+          <h2 class="h3">Do "oi" ao pedido registrado, sem você entrar no chat</h2>
+          <div class="steps">
+            <div class="step"><b>1</b><div><h4>Boas-vindas com a voz da sua marca</h4><p>Nada de menu. Ele pergunta o que a pessoa procura e já começa a vender.</p></div></div>
+            <div class="step"><b>2</b><div><h4>Busca no catálogo</h4><p>"Tem algo rosa para presentear minha mãe até R$ 80?" vira opções com foto.</p></div></div>
+            <div class="step"><b>3</b><div><h4>Confirma cor, tamanho e quantidade</h4><p>Evita o erro de pedido que custa caro.</p></div></div>
+            <div class="step"><b>4</b><div><h4>Endereço, frete e link de pagamento</h4><p>Calcula o frete pela região e manda o link do Mercado Pago ou da Shopify.</p></div></div>
+            <div class="step"><b>5</b><div><h4>Pedido registrado e comprovante enviado</h4><p>O pedido aparece no seu painel.</p></div></div>
+          </div>
+        </div>
+        <div class="visual"><img src="web/hero/hero-mockup.png" alt="Conversa de venda no WhatsApp com cards de produto"></div>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>04</span></div>
+    </div>
+  </section>
+
+  <!-- 05 · TUDO QUE FAZ SOZINHO -->
+  <section class="bg-soft">
+    <div class="sl">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <p class="kicker">Funcionalidades do agente</p>
+      <h2 class="h3" style="margin-bottom:28px">Oito coisas que acontecem em cada conversa</h2>
+      <div class="grid grid-4">
+        <div class="card card--light"><h4>Busca por linguagem natural</h4><p class="muted">Entende "algo floral pro verão" sem o nome exato.</p></div>
+        <div class="card card--light"><h4>Tags, categoria e preço</h4><p class="muted">Cruza filtros e mostra só o que serve.</p></div>
+        <div class="card card--light"><h4>Envio de mídia</h4><p class="muted">Fotos, vídeos, tabela de medidas em PDF e áudios na hora certa.</p></div>
+        <div class="card card--light"><h4>Registro de pedidos</h4><p class="muted">Confirma, registra e gera o comprovante. Nada digitado à mão.</p></div>
+        <div class="card card--light"><h4>Lembretes e reativação</h4><p class="muted">24 horas depois, volta a escrever com o que o cliente estava vendo.</p></div>
+        <div class="card card--light"><h4>Passa para humano</h4><p class="muted">Se o cliente pede uma pessoa, sua equipe recebe a conversa com resumo.</p></div>
+        <div class="card card--light"><h4>FAQ inteligente</h4><p class="muted">Troca, prazo e pagamento, com a base que você monta uma vez.</p></div>
+        <div class="card card--light"><h4>Pagamento integrado</h4><p class="muted">Gera o link, confirma o pagamento e dá baixa no estoque.</p></div>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>05</span></div>
+    </div>
+  </section>
+
+  <!-- 06 · MODA E ATACADO -->
+  <section class="bg-light">
+    <div class="sl">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <div class="split" style="grid-template-columns:1.25fr .75fr">
+        <div>
+          <p class="kicker">Feito para moda</p>
+          <h2 class="h3">Ele entende grade, pedido mínimo e preço de atacado</h2>
+          <ul class="dots" style="margin-top:26px">
+            <li><strong>Grade e mínimo de peças:</strong> você cadastra P ao GG ou 2 ao 10, e o agente monta o pedido pela grade.</li>
+            <li><strong>Atacado e varejo:</strong> cada cliente recebe o preço certo.</li>
+            <li><strong>Print do Instagram:</strong> a revendedora manda a foto do post e ele reconhece a peça no catálogo.</li>
+            <li><strong>Áudios e PDFs:</strong> escuta o áudio e lê a lista de pedido em PDF.</li>
+            <li><strong>Português e espanhol:</strong> responde no idioma do cliente, para quem compra do Paraguai, da Bolívia ou do Peru.</li>
+          </ul>
+        </div>
+        <div class="visual"><img src="web/yago/yago-comunidade.png" alt="Yago segurando um celular" style="max-height:500px"></div>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>06</span></div>
+    </div>
+  </section>
+
+  <!-- 07 · PLATAFORMA -->
+  <section class="bg-soft">
+    <div class="sl">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <p class="kicker">A plataforma</p>
+      <h2 class="h3" style="margin-bottom:26px">Pedidos, campanhas, catálogo e relatórios no mesmo painel</h2>
+      <div class="split" style="grid-template-columns:.9fr 1.1fr; height:auto; gap:36px">
+        <div class="grid" style="gap:12px">
+          <div class="card card--light" style="padding:16px 20px"><h4>Gestão de pedidos</h4><p class="muted">Status, pagamentos e entregas em tempo real, sem planilha.</p></div>
+          <div class="card card--light" style="padding:16px 20px"><h4>Notificações automáticas</h4><p class="muted">Confirmação de pagamento e status enviados ao cliente no WhatsApp.</p></div>
+          <div class="card card--light" style="padding:16px 20px"><h4>Catálogo omnicanal</h4><p class="muted">Um cadastro atualiza todos os canais.</p></div>
+          <div class="card card--light" style="padding:16px 20px"><h4>Relatórios e AI CRM</h4><p class="muted">Faturamento, conversão, ticket médio, mais vendidos e ROAS de anúncios.</p></div>
+        </div>
+        <div class="visual"><img src="web/hero/mockup-desktop.png" alt="Painel da yavendió! no computador" style="max-height:420px"></div>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>07</span></div>
+    </div>
+  </section>
+
+  <!-- 08 · NÚMEROS (pontuação escura) -->
+  <section class="bg-ink">
+    <div class="sl sl--center">
+      <img class="ya-logo" src="web/wordmark-white.png" alt="yavendió!">
+      <p class="kicker" style="margin-bottom:40px">O que muda na operação</p>
+      <div class="stats">
+        <div class="stat"><div class="big">80%</div><p>menos tempo operacional</p></div>
+        <div class="stat"><div class="big accent">3x</div><p>mais pedidos por dia</p></div>
+        <div class="stat"><div class="big">24h</div><p>de atendimento automático</p></div>
+      </div>
+      <p class="source">Fonte: yavendio.com/br/plataforma</p>
+      <div class="footer-bar"><span>yavendió!</span><span>08</span></div>
+    </div>
+  </section>
+
+  <!-- 09 · CANAIS E INTEGRAÇÕES -->
+  <section class="bg-light">
+    <div class="sl">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <p class="kicker">Canais e integrações</p>
+      <h2 class="h3" style="margin-bottom:26px">Conecta com o que você já usa, sem código</h2>
+      <div class="grid grid-2" style="gap:26px 40px">
+        <div><p class="group-title">Canais de venda</p><div class="tags"><span class="tag">WhatsApp (API oficial)</span><span class="tag">Instagram</span><span class="tag">Facebook Messenger</span><span class="tag">TikTok</span><span class="tag">Telegram</span><span class="tag">Site</span></div></div>
+        <div><p class="group-title">Catálogo e ERP</p><div class="tags"><span class="tag">Shopify</span><span class="tag">Olist</span><span class="tag">Bling</span></div></div>
+        <div><p class="group-title">Pagamento e frete</p><div class="tags"><span class="tag">Mercado Pago</span><span class="tag">Melhor Envio</span><span class="tag">Correios</span></div></div>
+        <div><p class="group-title">Anúncios e IA</p><div class="tags"><span class="tag">Meta Ads</span><span class="tag">Pixel (API de Conversões)</span><span class="tag">ChatGPT</span><span class="tag">Claude</span></div></div>
+      </div>
+      <div class="marquee" style="margin-top:44px">
+        <div class="marquee__track">
+          <img src="web/logos/whatsapp.svg" alt="WhatsApp"><img src="web/logos/instagram.svg" alt="Instagram"><img src="web/logos/meta.svg" alt="Meta"><img src="web/logos/shopify.svg" alt="Shopify"><img src="web/logos/mercado-pago.svg" alt="Mercado Pago"><img src="web/logos/olist.svg" alt="Olist"><img src="web/logos/bling.jpg" alt="Bling"><img src="web/logos/anthropic.svg" alt="Anthropic">
+          <img src="web/logos/whatsapp.svg" alt=""><img src="web/logos/instagram.svg" alt=""><img src="web/logos/meta.svg" alt=""><img src="web/logos/shopify.svg" alt=""><img src="web/logos/mercado-pago.svg" alt=""><img src="web/logos/olist.svg" alt=""><img src="web/logos/bling.jpg" alt=""><img src="web/logos/anthropic.svg" alt="">
+        </div>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>09</span></div>
+    </div>
+  </section>
+
+  <!-- 10 · YAGO + CHATGPT/CLAUDE -->
+  <section class="bg-soft">
+    <div class="sl">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <div class="split" style="grid-template-columns:1.2fr .8fr">
+        <div>
+          <p class="kicker">Copiloto</p>
+          <h2 class="h3">Cuide da loja conversando, no Yago, no ChatGPT ou no Claude</h2>
+          <ul class="dots" style="margin-top:24px">
+            <li><strong>Yago Copilot:</strong> pergunte sobre vendas e peça ajustes no vendedor. 30 mensagens por dia no Pro, 100 no Business.</li>
+            <li><strong>Conector ChatGPT e Claude:</strong> em todos os planos, sem custo extra. Consulte pedidos, vendas e produtos.</li>
+            <li><strong>Mudanças vão para rascunho</strong> e só entram no ar quando você publica.</li>
+            <li><strong>App Android:</strong> veja chats e pedidos e pause a IA numa conversa.</li>
+          </ul>
+          <div class="yago-row">
+            <img class="avatar" src="web/yago/yago-avatar.png" alt="Yago">
+            <div class="yago-bubble"><p>"Quantos pedidos entraram ontem pelo Instagram?"</p></div>
+          </div>
+        </div>
+        <div class="visual"><img src="web/sections/solutions-mockup-control.png" alt="Dashboard de métricas no celular" style="max-height:500px"></div>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>10</span></div>
+    </div>
+  </section>
+
+  <!-- 11 · ABERTURA PLANOS -->
+  <section class="bg-dawn" data-background-color="#160915">
+    <div class="sl sl--center">
+      <img class="ya-logo" src="web/wordmark-white.png" alt="yavendió!">
+      <div class="center-col">
+        <p class="kicker">Planos novos</p>
+        <h2 class="display">Três planos, a partir de <span class="accent">R$ 999</span> por mês</h2>
+        <p class="lead on80" style="margin-top:20px">Pro, Business e Business Plus. Todos com o agente de vendas, pedidos e estoque, integrações e o conector com ChatGPT e Claude.</p>
+      </div>
+      <p class="source">Valores de yavendio.com/br/precos em 16-nov-2026</p>
+      <div class="footer-bar"><span>yavendió!</span><span>11</span></div>
+    </div>
+  </section>
+
+  <!-- 12 · PLANOS -->
+  <section class="bg-soft">
+    <div class="sl" style="padding-top:76px">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <p class="kicker" style="margin-bottom:22px">Planos e preços · Brasil</p>
+      <div class="plans">
+        <div class="plan">
+          <h3>Pro</h3>
+          <p class="for">Para escalar com métricas e automação.</p>
+          <div class="price">R$ 999<small> /mês</small></div>
+          <p class="term">R$ 666/mês no plano de 12 meses</p>
+          <div class="conv">1.500 conversas de IA / mês</div>
+          <ul>
+            <li>6 canais, pedidos e estoque</li>
+            <li>Shopify, Olist ou Bling</li>
+            <li>Mercado Pago, Melhor Envio e Correios</li>
+            <li>AI CRM, disparos em massa, upsell</li>
+            <li>Meta Ads e Pixel de eventos</li>
+            <li>Modo economia para WhatsApp</li>
+          </ul>
+        </div>
+        <div class="plan plan--hi">
+          <span class="pill">Equipe de vendas</span>
+          <h3>Business</h3>
+          <p class="for">Para lojas com equipe de vendas e alto volume.</p>
+          <div class="price">R$ 2.499<small> /mês</small></div>
+          <p class="term">R$ 1.666/mês no plano de 12 meses</p>
+          <div class="conv">5.000 conversas de IA / mês</div>
+          <p class="inc">Tudo do Pro, e mais</p>
+          <ul style="margin-top:8px">
+            <li>Implementação guiada inclusa</li>
+            <li>4 h/mês de consultoria 1:1 em vendas com IA</li>
+            <li>Supervisores e distribuição de conversas</li>
+            <li>Loja virtual personalizada</li>
+            <li>Fotos de produto melhoradas com IA</li>
+            <li>Suporte priorizado (&lt;24h)</li>
+          </ul>
+        </div>
+        <div class="plan">
+          <h3>Business Plus</h3>
+          <p class="for">Para operações grandes que querem o time da yavendió! junto.</p>
+          <div class="price">R$ 5.999<small> /mês</small></div>
+          <p class="term">R$ 3.999,33/mês no plano de 12 meses</p>
+          <div class="conv">16.000 conversas de IA / mês</div>
+          <p class="inc">Tudo do Business, e mais</p>
+          <ul style="margin-top:8px">
+            <li>Acesso antecipado a funcionalidades novas</li>
+            <li>Desenvolvimentos customizados pelo time</li>
+            <li>Mentoria na criação de anúncios (Meta Ads)</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small muted" style="margin-top:14px">Taxa do WhatsApp cobrada à parte. Implementação guiada no Pro: R$ 1.500, pagamento único.</p>
+      <div class="footer-bar"><span>yavendió!</span><span>12</span></div>
+    </div>
+  </section>
+
+  <!-- 13 · COMPARATIVO -->
+  <section class="bg-light">
+    <div class="sl" style="padding-top:76px">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <p class="kicker" style="margin-bottom:14px">Compare os planos</p>
+      <table class="cmp">
+        <thead><tr><th></th><th>Pro</th><th>Business</th><th>Business Plus</th></tr></thead>
+        <tbody>
+          <tr><td>Preço por mês (plano de 1 mês)</td><td>R$ 999</td><td>R$ 2.499</td><td>R$ 5.999</td></tr>
+          <tr><td>Conversas de IA / mês</td><td>1.500</td><td>5.000</td><td>16.000</td></tr>
+          <tr><td>Conversa adicional</td><td>R$ 1,40</td><td>R$ 1,25</td><td>R$ 1,25</td></tr>
+          <tr class="sec"><td colspan="4">Suporte e onboarding</td></tr>
+          <tr><td>Implementação guiada</td><td>R$ 1.500</td><td>Inclusa</td><td>Inclusa</td></tr>
+          <tr><td>Horas de especialista em IA / mês</td><td class="no">-</td><td>4h</td><td>4h</td></tr>
+          <tr><td>Yago Copilot (mensagens/dia)</td><td>30</td><td>100</td><td>100</td></tr>
+          <tr><td>Suporte priorizado (&lt;24h)</td><td class="no">-</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Consultoria para integração via API</td><td class="no">-</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr class="sec"><td colspan="4">Exclusivo Business Plus</td></tr>
+          <tr><td>Desenvolvimentos customizados e acesso antecipado</td><td class="no">-</td><td class="no">-</td><td class="yes">✓</td></tr>
+          <tr><td>Mentoria em anúncios Meta Ads</td><td class="no">-</td><td class="no">-</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+      <div class="footer-bar"><span>yavendió!</span><span>13</span></div>
+    </div>
+  </section>
+
+  <!-- 14 · CONDIÇÕES -->
+  <section class="bg-soft">
+    <div class="sl">
+      <img class="ya-logo" src="web/wordmark-black.png" alt="yavendió!">
+      <p class="kicker">Como funciona a cobrança</p>
+      <h2 class="h3" style="margin-bottom:28px">Contratando 12 meses, você ganha 4 meses grátis</h2>
+      <div class="grid grid-3">
+        <div class="card card--promo">
+          <h4>Prazos</h4>
+          <p class="muted">1, 6 ou 12 meses, pagos antecipadamente. 6 meses dá 1 mês grátis. Pagamento pela Asaas: Pix, boleto ou cartão, à vista ou parcelado.</p>
+        </div>
+        <div class="card card--light">
+          <h4>Taxa do WhatsApp</h4>
+          <p class="muted">Desde 1º de outubro, a Meta cobra R$ 0,0385 por mensagem que a IA envia. 1.000 mensagens grátis por mês por número. Cliente vindo de anúncio: 7 dias sem cobrança se você responder em 24h.</p>
+        </div>
+        <div class="card card--light">
+          <h4>Conversas extras</h4>
+          <p class="muted">Pacote de 1.000 conversas de IA por R$ 500 (R$ 0,50 cada). Renova junto com a assinatura e você segue no mesmo plano.</p>
+        </div>
+      </div>
+      <div class="card card--light" style="margin-top:18px; display:flex; gap:28px; align-items:center">
+        <h4 style="margin:0; white-space:nowrap">Em breve em todos os planos</h4>
+        <div class="tags"><span class="tag tag--soon">Carrinhos abandonados</span><span class="tag tag--soon">Resposta a comentários no Instagram</span><span class="tag tag--soon">Rastreamento de pedido pelo chat</span><span class="tag tag--soon">Push de pedido</span><span class="tag tag--soon">Histórico do cliente por documento</span></div>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>14</span></div>
+    </div>
+  </section>
+
+  <!-- 15 · FECHAMENTO -->
+  <section class="bg-plum">
+    <div class="sl sl--center">
+      <img class="ya-logo" src="web/wordmark-white.png" alt="yavendió!">
+      <div class="center-col">
+        <p class="kicker">Próximo passo</p>
+        <h2 class="display">Seu agente pronto para vender em 5 minutos</h2>
+        <p class="lead on80" style="margin-top:18px">Escolha o plano, conecte o WhatsApp ou o Instagram e comece a vender.</p>
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn btn--cta" href="https://ya.onl/sign-up" target="_blank" rel="noopener">Criar conta em ya.onl/sign-up</a>
+          <a class="btn btn--ghost" href="https://yavendio.com/br/agendar-reuniao" target="_blank" rel="noopener">Falar com vendas</a>
+        </div>
+      </div>
+      <div class="footer-bar"><span>yavendió!</span><span>15</span></div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1280, height: 720, margin: 0,
+    controls: true, progress: true, hash: true, transition: 'slide',
+    plugins: [ RevealNotes ],
+  });
+</script>
+</body>
+</html>
